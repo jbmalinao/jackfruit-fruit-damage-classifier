@@ -65,7 +65,7 @@ for k in ("selected_image_pil", "analysis_results", "image_source"):
         st.session_state[k] = None
 
 # header
-st.markdown('<h1 class="main-header">Jackfruit Fruit Damage Classifier</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-header">Jackfruit Fruit DamageClassifier</h1>', unsafe_allow_html=True)
 
 # layout
 col1, col2 = st.columns([6, 4])
