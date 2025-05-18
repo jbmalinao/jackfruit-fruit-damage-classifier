@@ -20,6 +20,7 @@ div[data-testid="stAppViewContainer"]>.main>div[data-testid="block-container"]
     text-align:center;
     padding-top:10px;
     padding-bottom:25px;
+    width: 100%;
 }
 
 .column-title{
