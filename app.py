@@ -7,21 +7,20 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobil
 import joblib
 from pathlib import Path
 
+
 st.set_page_config(page_title="Jackfruit Fruit Damage Classifier",
                    layout="wide", initial_sidebar_state="collapsed")
 
-css = Path("styles.css").read_text()          # adjust path if needed
+css = Path("styles.css").read_text()
 st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-# ------------------------------------------------------------------ CONFIG
-CLASSES_FROM_YOUR_COLAB = ["Fruit_borer", "Fruit_fly", "Healthy", "Rhizopus_rot"]
-CLASS_LABELS = {i: lbl for i, lbl in enumerate(CLASSES_FROM_YOUR_COLAB)}
+CLASSES_CLB = ["Fruit_borer", "Fruit_fly", "Healthy", "Rhizopus_rot"]
+CLASS_LABELS = {i: lbl for i, lbl in enumerate(CLASSES_CLB)}
 IMAGE_SIZE = (224, 224)
 MODEL_PATH_CNN = "jackfruit_cnn_feature_extractor.h5"
 MODEL_PATH_SCALER = "jackfruit_feature_scaler.pkl"
 MODEL_PATH_SVM = "jackfruit_svm_classifier.pkl"
 
-# ------------------------------------------------------------------ LOAD MODELS
 @st.cache_resource
 def load_all_models():
     try:
@@ -34,7 +33,6 @@ def load_all_models():
         st.stop()
 cnn_model, scaler, svm_model = load_all_models()
 
-# ------------------------------------------------------------------ HELPERS
 def preprocess_image_for_prediction(img_pil):
     img = img_pil.resize(IMAGE_SIZE)
     arr = np.array(img)
@@ -61,29 +59,26 @@ def predict_disease(img_pil):
 
     return label, conf, probs
 
-# ------------------------------------------------------------------ SESSION STATE
+# session state
 for k in ("selected_image_pil", "analysis_results", "image_source"):
     if k not in st.session_state:
         st.session_state[k] = None
 
-
-# ============================= PAGE HEADER =============================
+# header
 st.markdown('<h1 class="main-header">Jackfruit Fruit Damage Classifier</h1>', unsafe_allow_html=True)
 
-
-# ------------------------------------------------------------------ LAYOUT
+# layout
 col1, col2 = st.columns([6, 4])
 
-# ============================= LEFT COLUMN =============================
 with col1:
     st.markdown('<p class="column-title">Upload Jackfruit Image</p>', unsafe_allow_html=True)
 
-    # Standard Streamlit File Uploader - its appearance will be modified by CSS
+   
     uploaded = st.file_uploader(
-        label="Drag and drop file here or click to browse", # Standard label
+        label="Drag and drop file here or click to browse", 
         type=["jpg", "jpeg", "png"],
         accept_multiple_files=False,
-        key="jackfruit_uploader_styled_directly", # New key
+        key="jackfruit_uploader_styled_directly", 
         help="Upload a JPG, JPEG, or PNG image (max 200MB).",
         label_visibility="collapsed" 
     )
@@ -102,7 +97,6 @@ with col1:
                 st.session_state.analysis_results = None
                 st.session_state.image_source = None
 
-# ============================= RIGHT COLUMN ============================
 with col2:
     st.markdown('<p class="column-title">Analysis Results</p>',
                 unsafe_allow_html=True)
