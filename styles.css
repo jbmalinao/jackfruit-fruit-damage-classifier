@@ -1,0 +1,28 @@
+/* General Page Styles */
+.block-container{padding-top:1rem;padding-bottom:1rem;}
+div[data-testid="stAppViewContainer"]>.main>div[data-testid="block-container"]{
+    background-color:#FEFDF9;padding:20px!important;border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid #EAEAEA;max-width:1200px;}
+
+/* Main Header Style */
+.main-header{
+    font-size:2.5em;font-weight:bold;color:#5D7406;text-align:center;
+    padding-top:10px;padding-bottom:25px;
+}
+
+/* Column Title Style */
+.column-title{font-size:20px;font-weight:bold;color:#5D7406;padding-bottom:8px;
+    border-bottom:3px solid #F5A623;margin-bottom:20px;}
+.placeholder-text{color:#A8B571;font-style:italic;font-size:15px;}
+
+/* --- st.file_uploader --- */
+div[data-testid="stFileUploader"]{
+    border:2px dashed #5D7406!important;border-radius:10px!important;
+    padding:25px 20px!important;background:#f9f9fa!important;margin-bottom:20px!important;
+}
+
+/* (optional tweaks commented out)
+div[data-testid="stFileUploader"] section[data-testid="stFileUploadDropzone"] p{}
+div[data-testid="stFileUploader"] section[data-testid="stFileUploadDropzone"]
+      button[data-testid="baseButton-secondary"]{}
+*/
